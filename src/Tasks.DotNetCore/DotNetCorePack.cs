@@ -5,16 +5,16 @@ using Cake.Core;
 using Cake.Frosting;
 using System.Linq;
 
-namespace MK6.Tools.CakeBuild.Frosting.Tasks
+namespace DefiantCode.Cake.Frosting.Tasks
 {
     [Dependency(typeof(DotNetCoreBuild))]
-    public class DotNetCorePack : FrostingTask<DotNetCoreContext>
+    public sealed class DotNetCorePack : FrostingTask<DotNetCoreContext>
     {
         public override void Run(DotNetCoreContext context)
         {
-            foreach (var project in context.Projects.Where(x => x.ProjectParserResult.IsNetCore && !string.IsNullOrWhiteSpace(x.ProjectParserResult.NetCore.PackageId)))
+            foreach (var project in context.Projects.Where(x => x.ProjectParserResult.IsNetCore && x.ProjectParserResult.NetCore.IsPackable))
             {
-                context.Information("Packaging project {0} with version: {1}",project.ProjectParserResult.AssemblyName, context.BuildVersion.Version.FullSemVer);
+                context.Information("Packaging project {0} with version: {1}",project.ProjectParserResult.NetCore.PackageId, context.BuildVersion.Version.FullSemVer);
 
                 context.DotNetCorePack(project.ProjectPath.FullPath, new DotNetCorePackSettings()
                 {

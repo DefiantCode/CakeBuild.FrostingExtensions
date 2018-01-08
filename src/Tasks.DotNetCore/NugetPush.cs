@@ -5,7 +5,7 @@ using Cake.Common.Tools.NuGet.Push;
 using Cake.Core;
 using Cake.Frosting;
 
-namespace MK6.Tools.CakeBuild.Frosting.Tasks
+namespace DefiantCode.Cake.Frosting.Tasks
 {
     [Dependency(typeof(DotNetCorePack))]
     public sealed class NugetPush : FrostingTask<DotNetCoreContext>

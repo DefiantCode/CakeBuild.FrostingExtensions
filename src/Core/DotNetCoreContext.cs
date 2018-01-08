@@ -2,11 +2,11 @@ using Cake.Core;
 using Cake.Core.IO;
 using Cake.Frosting;
 using Cake.Incubator;
-using MK6.Tools.CakeBuild.Frosting.Utilities;
+using DefiantCode.Cake.Frosting.Utilities;
 using System;
 using System.Collections.Generic;
 
-namespace MK6.Tools.CakeBuild.Frosting
+namespace DefiantCode.Cake.Frosting
 {
     public class DotNetCoreContext : FrostingContext, IContext
     {

@@ -6,8 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MK6.Tools.CakeBuild.Frosting.Core" Version="0.3.0" />
-    <PackageReference Include="MK6.Tools.CakeBuild.Frosting.DotNetCore" Version="0.3.0" />
+    <PackageReference Include="DefiantCode.Cake.Frosting.DotNetCore" Version="0.0.1" />
   </ItemGroup>
 
 </Project>

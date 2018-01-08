@@ -1,6 +1,6 @@
 ﻿using Cake.Frosting;
-using MK6.Tools.CakeBuild.Frosting;
-using MK6.Tools.CakeBuild.Frosting.Tasks;
+using DefiantCode.Cake.Frosting;
+using DefiantCode.Cake.Frosting.Tasks;
 using System;
 
 namespace BuildTestRunner
@@ -21,7 +21,7 @@ namespace BuildTestRunner
 
         public void Configure(ICakeServices services)
         {
-            services.UseAssembly(typeof(Default).Assembly);
+            services.UseAssembly(typeof(DotNetCoreBuild).Assembly);
             services.UseContext<DotNetCoreContext>();
             services.UseLifetime<DotNetCoreLifetime>();
             //services.UseContext<DynamicContext>();

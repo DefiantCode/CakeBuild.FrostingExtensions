@@ -4,12 +4,10 @@ using Cake.Common.Tools.DotNetCore.Build;
 using Cake.Core;
 using Cake.Common.Diagnostics;
 
-namespace MK6.Tools.CakeBuild.Frosting.Tasks
+namespace DefiantCode.Cake.Frosting.Tasks
 {
-    [Dependency(typeof(DotNetCoreRestore))]
     public sealed class DotNetCoreBuild : FrostingTask<DotNetCoreContext>
     {
-
         public override void Run(DotNetCoreContext context)
         {
             context.Validate(ValidateOptions.Default, true);

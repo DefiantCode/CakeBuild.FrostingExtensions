@@ -4,7 +4,7 @@ using Cake.Common.Tools.DotNetCore;
 using Cake.Common.Tools.DotNetCore.Clean;
 using Cake.Common.IO;
 
-namespace MK6.Tools.CakeBuild.Frosting.Tasks
+namespace DefiantCode.Cake.Frosting.Tasks
 {
     public sealed class DotNetCoreClean : FrostingTask<DotNetCoreContext>
     {

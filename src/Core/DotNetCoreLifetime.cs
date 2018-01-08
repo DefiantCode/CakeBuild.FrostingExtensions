@@ -6,10 +6,10 @@ using Cake.Incubator;
 using Cake.Common.Solution;
 using Cake.Common.Build;
 using Cake.Core.IO;
-using MK6.Tools.CakeBuild.Frosting.Utilities;
+using DefiantCode.Cake.Frosting.Utilities;
 using Cake.Core;
 
-namespace MK6.Tools.CakeBuild.Frosting
+namespace DefiantCode.Cake.Frosting
 {
     public class DotNetCoreLifetime : FrostingLifetime<DotNetCoreContext>
     {

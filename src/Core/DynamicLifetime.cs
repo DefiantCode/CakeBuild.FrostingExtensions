@@ -6,7 +6,7 @@ using Cake.Core;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MK6.Tools.CakeBuild.Frosting
+namespace DefiantCode.Cake.Frosting
 {
     public class DynamicLifetime : FrostingLifetime<DynamicContext>
     {

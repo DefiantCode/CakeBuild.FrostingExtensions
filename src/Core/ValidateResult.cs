@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MK6.Tools.CakeBuild.Frosting
+namespace DefiantCode.Cake.Frosting
 {
     public class ValidateResult
     {

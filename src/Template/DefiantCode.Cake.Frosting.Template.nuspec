@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>MK6.Tools.CakeBuild.Frosting.Template</id>
-    <version>0.0.5</version>
+    <id>DefiantCode.Cake.Frosting.Template</id>
+    <version>0.0.1</version>
     <description>
-      Creates the Market6 Cake Frosting Build Script
+      Creates the DefiantCode Cake Frosting Build Script
     </description>
-    <authors>market6</authors>
+    <authors>defiantcode</authors>
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>

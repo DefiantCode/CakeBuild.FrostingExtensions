@@ -2,10 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <AssemblyName>MK6.Tools.CakeBuild.Frosting.Tasks.DotNetCore</AssemblyName>
-    <RootNamespace>MK6.Tools.CakeBuild.Frosting.Tasks.DotNetCore</RootNamespace>
-    <PackageId>MK6.Tools.CakeBuild.Frosting.DotNetCore</PackageId>
+    <AssemblyName>DefiantCode.Cake.Frosting.Tasks.DotNetCore</AssemblyName>
+    <RootNamespace>DefiantCode.Cake.Frosting.Tasks.DotNetCore</RootNamespace>
+    <PackageId>DefiantCode.Cake.Frosting.DotNetCore</PackageId>
     <PackageProjectUrl>https://github.com/market6/MK6.Tools.CakeBuild.Frosting</PackageProjectUrl>
+    <Version>0.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

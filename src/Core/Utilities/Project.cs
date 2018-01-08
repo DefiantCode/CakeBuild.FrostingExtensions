@@ -1,7 +1,7 @@
 ﻿using Cake.Core.IO;
 using Cake.Incubator;
 
-namespace MK6.Tools.CakeBuild.Frosting.Utilities
+namespace DefiantCode.Cake.Frosting.Utilities
 {
     public class Project
     {

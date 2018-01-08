@@ -10,8 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MK6.Tools.CakeBuild.Frosting.Core" Version="0.3.0-provision-bitbuc0001" />
-    <PackageReference Include="MK6.Tools.CakeBuild.Frosting.DotNetCore" Version="0.3.0-provision-bitbuc0001" />
+    <PackageReference Include="DefiantCode.Cake.Frosting.Core" Version="0.0.1" />
+    <PackageReference Include="DefiantCode.Cake.Frosting.DotNetCore" Version="0.0.1" />
   </ItemGroup>
 
 </Project>

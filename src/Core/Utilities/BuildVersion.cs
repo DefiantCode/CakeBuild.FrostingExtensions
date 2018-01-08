@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MK6.Tools.CakeBuild.Frosting.Utilities
+namespace DefiantCode.Cake.Frosting.Utilities
 {
     public class BuildVersion
     {

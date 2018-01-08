@@ -3,7 +3,7 @@ using Cake.Frosting;
 using System.Collections.Generic;
 using System.Dynamic;
 
-namespace MK6.Tools.CakeBuild.Frosting
+namespace DefiantCode.Cake.Frosting
 {
     public interface IContext : ICakeContext
     {

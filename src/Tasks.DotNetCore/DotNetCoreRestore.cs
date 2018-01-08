@@ -1,7 +1,7 @@
 ﻿using Cake.Frosting;
 using Cake.Common.Tools.DotNetCore;
 
-namespace MK6.Tools.CakeBuild.Frosting.Tasks
+namespace DefiantCode.Cake.Frosting.Tasks
 {
     [Dependency(typeof(DotNetCoreClean))]
     public sealed class DotNetCoreRestore : FrostingTask<DotNetCoreContext>

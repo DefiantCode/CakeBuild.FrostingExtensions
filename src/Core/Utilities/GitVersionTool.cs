@@ -3,7 +3,7 @@ using Cake.Common.Tools.NuGet;
 using Cake.Common.Tools.NuGet.Install;
 using Cake.Core;
 
-namespace MK6.Tools.CakeBuild.Frosting.Utilities
+namespace DefiantCode.Cake.Frosting.Utilities
 {
     public class GitVersionTool
     {

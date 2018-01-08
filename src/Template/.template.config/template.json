@@ -1,10 +1,10 @@
 ﻿{
   "$schema": "http://json.schemastore.org/template",
-  "author": "market6",
-  "classifications": [ "MK6", "M6", "Market6", "Cake", "Frosting" ],
-  "identity": "MK6.Tools.CakeBuild.Frosting",
-  "name": "Market6 Cake Frosting Build Script",
-  "shortName": "cakefrosting-m6",
+  "author": "defiantcode",
+  "classifications": [ "build", "tools", "Cake", "Frosting" ],
+  "identity": "DefiantCode.Cake.Frosting",
+  "name": "DefiantCode Cake Frosting Build Script",
+  "shortName": "cakefrosting-dc",
   "tags": {
     "language": "C#"
   }

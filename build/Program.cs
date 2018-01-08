@@ -1,6 +1,6 @@
 ﻿using Cake.Frosting;
-using MK6.Tools.CakeBuild.Frosting;
-using MK6.Tools.CakeBuild.Frosting.Tasks;
+using DefiantCode.Cake.Frosting;
+using DefiantCode.Cake.Frosting.Tasks;
 
 public class Program : IFrostingStartup
 {
