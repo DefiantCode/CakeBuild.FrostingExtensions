@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace DefiantCode.Cake.Frosting.Tasks
 {
+    [Dependency(typeof(DotNetCoreClean))]
     [Dependency(typeof(DotNetCoreBuild))]
     public sealed class DotNetCorePack : FrostingTask<DotNetCoreContext>
     {

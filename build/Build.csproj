@@ -6,7 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DefiantCode.Cake.Frosting.DotNetCore" Version="0.0.1" />
+    <PackageReference Include="Cake.Frosting" Version="0.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DefiantCode.Cake.Frosting.Core">
+      <HintPath>..\src\Core\bin\Debug\netstandard1.6\DefiantCode.Cake.Frosting.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DefiantCode.Cake.Frosting.Tasks.DotNetCore">
+      <HintPath>..\src\Tasks.DotNetCore\bin\Debug\netstandard1.6\DefiantCode.Cake.Frosting.Tasks.DotNetCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

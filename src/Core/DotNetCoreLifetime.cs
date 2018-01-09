@@ -8,22 +8,50 @@ using Cake.Common.Build;
 using Cake.Core.IO;
 using DefiantCode.Cake.Frosting.Utilities;
 using Cake.Core;
+using System;
 
 namespace DefiantCode.Cake.Frosting
 {
     public class DotNetCoreLifetime : FrostingLifetime<DotNetCoreContext>
     {
+        private static object _lock = new object();
+        private static Action<DotNetCoreContext> _beforeSetupAction = null;
+        private static Action<DotNetCoreContext> _afterSetupAction = null;
+        private static Action<DotNetCoreContext> _teardownAction = null;
+
+        public static void RegisterBeforeSetupAction(Action<DotNetCoreContext> beforeSetupAction)
+        {
+            lock (_lock)
+                _beforeSetupAction = beforeSetupAction;
+        }
+
+        public static void RegisterAfterSetupAction(Action<DotNetCoreContext> afterSetupAction)
+        {
+            lock (_lock)
+                _afterSetupAction = afterSetupAction;
+        }
+
+        public static void RegisterAdditionalTeardown(Action<DotNetCoreContext> teardownAction)
+        {
+            lock (_lock)
+                _teardownAction = teardownAction;
+        }
+
         public override void Setup(DotNetCoreContext context)
         {
-            GitVersionTool.Install(context);
+            _beforeSetupAction?.Invoke(context);
+            if(!context.DisableGitVersion)
+                GitVersionTool.Install(context);
 
             context.Target = context.Argument("target", "Default");
             context.Configuration = context.Argument("configuration", "Release");
             context.SolutionRoot = context.FileSystem.GetDirectory(".").Path.MakeAbsolute(context.Environment);
-            context.BuildVersion = BuildVersion.Calculate(context);
+            if(!context.DisableGitVersion)
+                context.BuildVersion = BuildVersion.Calculate(context);
+
             context.Artifacts = context.Argument("artifacts", "./artifacts");
             context.NugetDefaultPushSourceUrl = GetEnvOrArg(context, "nugetDefaultPushSourceUrl", "NUGET_DEFAULT_PUSH_SOURCE_URL");
-            context.NugetDefaultPushSourceApiKey = GetEnvOrArg(context, "NUGET_DEFAULT_PUSH_SOURCE_URL_API_KEY", "nugetDefaultPushSourceApiKey");
+            context.NugetDefaultPushSourceApiKey = GetEnvOrArg(context, "NUGET_DEFAULT_PUSH_SOURCE_API_KEY", "nugetDefaultPushSourceApiKey");
 
             if (!context.HasArgument("solutionFilePath"))
             {
@@ -50,6 +78,8 @@ namespace DefiantCode.Cake.Frosting
             context.IsLocalBuild = buildSystem.IsLocalBuild;
 
             context.DirectoriesToClean = new DirectoryPath[] { context.Artifacts };
+
+            _afterSetupAction?.Invoke(context);
 
             context.Verbose("\n\nDumping context...\n\n{0}", context.ToString());
         }

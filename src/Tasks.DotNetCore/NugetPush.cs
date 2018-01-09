@@ -21,7 +21,7 @@ namespace DefiantCode.Cake.Frosting.Tasks
             if (string.IsNullOrEmpty(nugetSettings.ApiKey))
                 throw new CakeException("NugetDefaultPushSourceApiKey was not set!");
 
-            context.DotNetCoreNuGetPush(".\\artifacts\\*.nupkg", nugetSettings);
+            context.DotNetCoreNuGetPush("./artifacts/*.nupkg", nugetSettings);
         }
 
 
