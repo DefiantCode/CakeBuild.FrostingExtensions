@@ -19,11 +19,11 @@ namespace DefiantCode.Cake.Frosting.Tasks
             foreach (var project in context.Projects.Where(x => x.ProjectParserResult.IsNetCore && x.ProjectParserResult.NetCore.TargetFrameworks.Any(f => f.StartsWith("netcoreapp"))))
             {
                 context.Information("Publishing  project {0} with version: {1}", project.ProjectParserResult.NetCore.PackageId, context.BuildVersion.Version.FullSemVer);
-
+                project.PublishedOutputDirectory = context.Artifacts.Combine(project.ProjectParserResult.NetCore.PackageId);
                 context.DotNetCorePublish(project.ProjectPath.FullPath, new DotNetCorePublishSettings
                 {
                     Configuration = context.Configuration,
-                    OutputDirectory = context.Artifacts.Combine(project.ProjectParserResult.NetCore.PackageId)
+                    OutputDirectory = project.PublishedOutputDirectory
                 });
 
                 publishedProjects.Add(project);

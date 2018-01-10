@@ -9,6 +9,7 @@ namespace DefiantCode.Cake.Frosting.Utilities
         public string ProjectName { get; set; }
         public FilePath ProjectPath { get; set; }
         public CustomProjectParserResult ProjectParserResult { get; set; }
+        public DirectoryPath PublishedOutputDirectory { get; set; }
 
         public Project(FilePath projectPath, CustomProjectParserResult projectParserResult)
         {
