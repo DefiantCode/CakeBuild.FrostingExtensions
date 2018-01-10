@@ -4,6 +4,8 @@ using Cake.Common.Tools.DotNetCore.Pack;
 using Cake.Common.Tools.DotNetCore.Publish;
 using Cake.Core;
 using Cake.Frosting;
+using DefiantCode.Cake.Frosting.Utilities;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DefiantCode.Cake.Frosting.Tasks
@@ -13,6 +15,8 @@ namespace DefiantCode.Cake.Frosting.Tasks
     {
         public override void Run(DotNetCoreContext context)
         {
+            var publishedProjects = new List<Project>();
+
             foreach (var project in context.Projects.Where(x => x.ProjectParserResult.IsNetCore && x.ProjectParserResult.NetCore.TargetFrameworks.Any(f => f.StartsWith("netcoreapp"))))
             {
                 context.Information("Packaging project {0} with version: {1}", project.ProjectParserResult.NetCore.PackageId, context.BuildVersion.Version.FullSemVer);
@@ -22,7 +26,11 @@ namespace DefiantCode.Cake.Frosting.Tasks
                     Configuration = context.Configuration,
                     OutputDirectory = context.Artifacts.Combine(project.ProjectParserResult.NetCore.PackageId)
                 });
+
+                publishedProjects.Add(project);
             }
+
+            context.Outputs.PublishedProjects = publishedProjects;
         }
     }
 }

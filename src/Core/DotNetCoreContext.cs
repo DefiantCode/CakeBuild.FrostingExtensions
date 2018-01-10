@@ -22,10 +22,11 @@ namespace DefiantCode.Cake.Frosting
         public string NugetDefaultPushSourceUrl { get; set; }
         public string NugetDefaultPushSourceApiKey { get; set; }
         public bool DisableGitVersion { get; set; }
+        public TaskOutputs Outputs { get; set; }
 
         public DotNetCoreContext(ICakeContext context) : base(context)
         {
-          
+            Outputs = new TaskOutputs();
         }
 
         public ValidateResult Validate(ValidateOptions options = null, bool throwException = true)
@@ -48,4 +49,10 @@ namespace DefiantCode.Cake.Frosting
             return this.Dump();
         }
     }
+
+    public class TaskOutputs
+    {
+        public IReadOnlyCollection<Project> PublishedProjects { get; set; }
+    }
+
 }
