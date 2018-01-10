@@ -8,16 +8,14 @@ using System.Collections.Generic;
 
 namespace DefiantCode.Cake.Frosting
 {
-    public class DotNetCoreContext : FrostingContext, IContext
+    public class DotNetCoreContext : DynamicContext
     {
         public BuildVersion BuildVersion { get; set; }
         public FilePath SolutionFilePath { get; set; }
         public DirectoryPath SolutionRoot { get; set; }
         public DirectoryPath Artifacts { get; set; }
         public string Configuration { get; set; }
-        public string Target { get; set; }
         public IReadOnlyCollection<Project> Projects { get; set; }
-        public bool IsLocalBuild { get; set; }
         public IReadOnlyCollection<DirectoryPath> DirectoriesToClean { get; set; }
         public string NugetDefaultPushSourceUrl { get; set; }
         public string NugetDefaultPushSourceApiKey { get; set; }
@@ -48,11 +46,6 @@ namespace DefiantCode.Cake.Frosting
         {
             return this.Dump();
         }
-    }
-
-    public class TaskOutputs
-    {
-        public IReadOnlyCollection<Project> PublishedProjects { get; set; }
     }
 
 }
