@@ -63,7 +63,7 @@ namespace DefiantCode.Cake.Frosting
                     throw new CakeException("More than 1 sln files found. Specify the sln file to used with the solutionFilePath argument.");
             }
             else
-                context.SolutionFilePath = context.Argument<string>("solutionFilePath", null);
+                context.SolutionFilePath = context.SolutionFilePath != null && context.SolutionFilePath.IsSolution() ? context.SolutionFilePath : context.Argument<string>("solutionFilePath", null);
 
             if (context.SolutionFilePath != null)
             {
@@ -83,6 +83,12 @@ namespace DefiantCode.Cake.Frosting
 
             context.Verbose("\n\nDumping context...\n\n{0}", context.ToString());
         }
+
+        public override void Teardown(DotNetCoreContext context, ITeardownContext info)
+        {
+            _teardownAction?.Invoke(context);
+        }
+
         private static string GetEnvOrArg(DotNetCoreContext context, string environmentVariable, string argumentName)
         {
             var arg = context.EnvironmentVariable(environmentVariable);
