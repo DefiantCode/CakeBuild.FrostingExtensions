@@ -12,34 +12,21 @@ using System;
 
 namespace DefiantCode.Cake.Frosting
 {
+
     public class DotNetCoreLifetime : FrostingLifetime<DotNetCoreContext>
     {
         private static object _lock = new object();
-        private static Action<DotNetCoreContext> _beforeSetupAction = null;
-        private static Action<DotNetCoreContext> _afterSetupAction = null;
-        private static Action<DotNetCoreContext> _teardownAction = null;
+        private static ILifetimeActions _lifetimeActions;
 
-        public static void RegisterBeforeSetupAction(Action<DotNetCoreContext> beforeSetupAction)
+        public static void RegisterActions(ILifetimeActions lifetimeActions)
         {
             lock (_lock)
-                _beforeSetupAction = beforeSetupAction;
-        }
-
-        public static void RegisterAfterSetupAction(Action<DotNetCoreContext> afterSetupAction)
-        {
-            lock (_lock)
-                _afterSetupAction = afterSetupAction;
-        }
-
-        public static void RegisterAdditionalTeardown(Action<DotNetCoreContext> teardownAction)
-        {
-            lock (_lock)
-                _teardownAction = teardownAction;
+                _lifetimeActions = lifetimeActions;
         }
 
         public override void Setup(DotNetCoreContext context)
         {
-            _beforeSetupAction?.Invoke(context);
+            _lifetimeActions?.BeforeSetup(context);
             if(!context.DisableGitVersion)
                 GitVersionTool.Install(context);
 
@@ -79,14 +66,15 @@ namespace DefiantCode.Cake.Frosting
 
             context.DirectoriesToClean = new DirectoryPath[] { context.Artifacts };
 
-            _afterSetupAction?.Invoke(context);
+            _lifetimeActions?.AfterSetup(context);
 
             context.Verbose("\n\nDumping context...\n\n{0}", context.ToString());
         }
 
         public override void Teardown(DotNetCoreContext context, ITeardownContext info)
         {
-            _teardownAction?.Invoke(context);
+            _lifetimeActions?.BeforeTeardown(context, info);
+            _lifetimeActions?.AfterTeardown(context, info);
         }
 
         private static string GetEnvOrArg(DotNetCoreContext context, string environmentVariable, string argumentName)
