@@ -1,17 +1,29 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include=".template.config\template.json" />
+    <Compile Remove=".template.config\**" />
+    <EmbeddedResource Remove=".template.config\**" />
+    <None Remove=".template.config\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DefiantCode.Cake.Frosting.Core" Version="0.0.1" />
-    <PackageReference Include="DefiantCode.Cake.Frosting.DotNetCore" Version="0.0.1" />
+    <None Remove="build.ps1" />
+    <None Remove="DefiantCode.Cake.Frosting.Template.0.0.1.nupkg" />
+    <None Remove="DefiantCode.Cake.Frosting.Template.0.0.3.nupkg" />
+    <None Remove="DefiantCode.Cake.Frosting.Template.0.0.4.nupkg" />
+    <None Remove="DefiantCode.Cake.Frosting.Template.0.0.5.nupkg" />
+    <None Remove="DefiantCode.Cake.Frosting.Template.0.0.6.nupkg" />
+    <None Remove="DefiantCode.Cake.Frosting.Template.nuspec" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DefiantCode.Cake.Frosting.Core" Version="0.3.0" />
+    <PackageReference Include="DefiantCode.Cake.Frosting.DotNetCore" Version="0.3.0" />
   </ItemGroup>
 
 </Project>

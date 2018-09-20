@@ -18,9 +18,12 @@ public class Program : IFrostingStartup
 
     public void Configure(ICakeServices services)
     {
-        services.UseAssembly(typeof(Default).Assembly);
+        services.UseAssembly(typeof(DotNetCoreBuild).Assembly);
+        services.UseAssembly(typeof(DefaultTask).Assembly);
         services.UseContext<DotNetCoreContext>();
         services.UseLifetime<DotNetCoreLifetime>();
         services.UseWorkingDirectory("..");
+
+        DotNetCoreLifetime.RegisterActions(new LifetimeActions());
     }
 }
