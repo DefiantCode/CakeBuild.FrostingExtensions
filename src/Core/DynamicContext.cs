@@ -15,16 +15,16 @@ namespace DefiantCode.Cake.Frosting
     {
         public string Target { get; set; }
         public bool IsLocalBuild { get; set; }
-        public dynamic Properties { get; set; }
+        public IDictionary<string, object> Properties { get; set; }
 
         public void OverrideProperties(IDictionary<string, object> properties)
         {
-            Properties = (ExpandoObject)properties;
+            Properties = properties;
         }
 
         public DynamicContext(ICakeContext context) : base(context)
         {
-            Properties = new ExpandoObject();
+            Properties = new Dictionary<string, object>();
         }
 
         public T GetProperty<T>(string key)

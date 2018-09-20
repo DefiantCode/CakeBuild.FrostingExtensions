@@ -1,4 +1,5 @@
 ﻿using Cake.Common;
+using Cake.Core;
 using Cake.Frosting;
 using DefiantCode.Cake.Frosting;
 using DefiantCode.Cake.Frosting.Tasks;
@@ -30,15 +31,32 @@ public class Program : IFrostingStartup
 
     private void RegisterLifetimeActions()
     {
-        DotNetCoreLifetime.RegisterBeforeSetupAction(ctx =>
+        DotNetCoreLifetime.RegisterActions(new LifetimeActions());
+    }
+}
+
+class LifetimeActions : ILifetimeActions
+{
+    public void AfterSetup(DotNetCoreContext context)
+    {
+    }
+
+    public void AfterTeardown(DotNetCoreContext context, ITeardownContext info)
+    {
+    }
+
+    public void BeforeSetup(DotNetCoreContext context)
+    {
+        if (context.HasArgument("assemblyVersion"))
         {
-            if (ctx.HasArgument("assemblyVersion"))
-            {
-                var av = ctx.Argument<string>("assemblyVersion");
-                var pv = ctx.Argument("packageVersion", av);
-                ctx.DisableGitVersion = true;
-                ctx.BuildVersion = new BuildVersion(av, pv);
-            }
-        });
+            var av = context.Argument<string>("assemblyVersion");
+            var pv = context.Argument("packageVersion", av);
+            context.DisableGitVersion = true;
+            context.BuildVersion = new BuildVersion(av, pv);
+        }
+    }
+
+    public void BeforeTeardown(DotNetCoreContext context, ITeardownContext info)
+    {
     }
 }

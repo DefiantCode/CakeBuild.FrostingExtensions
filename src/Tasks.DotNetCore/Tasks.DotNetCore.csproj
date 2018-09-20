@@ -1,16 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>DefiantCode.Cake.Frosting.Tasks.DotNetCore</AssemblyName>
-    <RootNamespace>DefiantCode.Cake.Frosting.Tasks.DotNetCore</RootNamespace>
+    <RootNamespace>DefiantCode.Cake.Frosting.Tasks</RootNamespace>
     <PackageId>DefiantCode.Cake.Frosting.DotNetCore</PackageId>
     <PackageProjectUrl>https://github.com/market6/MK6.Tools.CakeBuild.Frosting</PackageProjectUrl>
-    <Version>0.0.1</Version>
+    <Version>0.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cake.Frosting" Version="0.1.0" />
+    <PackageReference Include="Cake.Frosting" Version="0.2.30" />
   </ItemGroup>
 
   <ItemGroup>

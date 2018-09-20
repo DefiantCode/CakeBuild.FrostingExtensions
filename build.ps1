@@ -29,13 +29,14 @@ Param(
     [switch]$WhatIf,
     [string]$NugetDefaultPushSourceApiKey,
     [string]$NugetDefaultPushSourceUrl,
+    [string]$NugetConfigPath = "..\Nuget.config",
     [string]$SolutionFilePath
 )
 
-$TargetFramework = "netcoreapp2.0"
-$DotNetVersion = "2.0.2";
+$TargetFramework = "netcoreapp2.1"
+$DotNetVersion = "latest";
 $DotNetInstallerUri = "https://dot.net/v1/dotnet-install.ps1";
-$NugetUrl = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 # Make sure tools folder exists
 $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
@@ -70,8 +71,9 @@ if($FoundDotNetCliVersion -ne $DotNetVersion) {
     if (!(Test-Path $InstallPath)) {
         mkdir -Force $InstallPath | Out-Null;
     }
+
     (New-Object System.Net.WebClient).DownloadFile($DotNetInstallerUri, "$InstallPath\dotnet-install.ps1");
-    & $InstallPath\dotnet-install.ps1 -Version $DotNetVersion -InstallDir $InstallPath;
+    & $InstallPath\dotnet-install.ps1 -Version $DotNetVersion -InstallDir $InstallPath -Channel Current;
 
     Write-Host "dotnet install complete"
     
@@ -80,17 +82,6 @@ if($FoundDotNetCliVersion -ne $DotNetVersion) {
     Set-Alias "dotnet" $InstallPath
     $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
     $env:DOTNET_CLI_TELEMETRY_OPTOUT=1
-}
-
-###########################################################################
-# INSTALL NUGET
-###########################################################################
-
-# Make sure nuget.exe exists.
-$NugetPath = Join-Path $ToolPath "nuget.exe" 
-if (!(Test-Path $NugetPath)) {
-    Write-Host "Downloading NuGet.exe..."
-    (New-Object System.Net.WebClient).DownloadFile($NugetUrl, $NugetPath);
 }
 
 ###########################################################################
@@ -112,7 +103,7 @@ try {
     Push-Location
     Set-Location build
     Write-Host "Restoring packages..."
-    Invoke-Expression "dotnet restore"
+    Invoke-Expression "dotnet restore --configfile $NugetConfigPath"
     if($LASTEXITCODE -eq 0) {
         Write-Output "Compiling build..."
         Invoke-Expression "dotnet publish -c Debug /v:q /nologo"

@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks.DotNetCore", "src\Tasks.DotNetCore\Tasks.DotNetCore.csproj", "{9FB908B1-025E-4CAB-9A3B-246951281387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildTestRunner", "src\BuildTestRunner\BuildTestRunner.csproj", "{1D71DBF4-8D87-453A-841C-B5A2D5990C99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildTestRunner", "src\BuildTestRunner\BuildTestRunner.csproj", "{1D71DBF4-8D87-453A-841C-B5A2D5990C99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
