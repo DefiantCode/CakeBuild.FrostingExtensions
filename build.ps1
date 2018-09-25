@@ -30,7 +30,9 @@ Param(
     [string]$NugetDefaultPushSourceApiKey,
     [string]$NugetDefaultPushSourceUrl,
     [string]$NugetConfigPath = "..\Nuget.config",
-    [string]$SolutionFilePath
+    [string]$SolutionFilePath,
+    [string]$AssemblyVersion
+
 )
 
 $TargetFramework = "netcoreapp2.1"
@@ -96,7 +98,8 @@ $Arguments = @{
     dryrun=$WhatIf;
     nugetDefaultPushSourceApiKey=$NugetDefaultPushSourceApiKey;
     nugetDefaultPushSourceUrl=$NugetDefaultPushSourceUrl;
-    solutionFilePath=$SolutionFilePath
+    solutionFilePath=$SolutionFilePath;
+	assemblyVersion=$AssemblyVersion
 }.GetEnumerator() | ForEach-Object { "--{0}=`"{1}`"" -f $_.key, $_.value };
 
 try {

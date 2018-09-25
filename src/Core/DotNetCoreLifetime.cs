@@ -9,6 +9,7 @@ using Cake.Core.IO;
 using DefiantCode.Cake.Frosting.Utilities;
 using Cake.Core;
 using System;
+using Cake.Core.Diagnostics;
 
 namespace DefiantCode.Cake.Frosting
 {
@@ -26,6 +27,7 @@ namespace DefiantCode.Cake.Frosting
 
         public override void Setup(DotNetCoreContext context)
         {
+            context.Information("v{0}", GetType().Assembly.GetName().Version);
             _lifetimeActions?.BeforeSetup(context);
             if(!context.DisableGitVersion)
                 GitVersionTool.Install(context);
@@ -37,7 +39,7 @@ namespace DefiantCode.Cake.Frosting
                 context.BuildVersion = BuildVersion.Calculate(context);
 
             context.Artifacts = context.Argument("artifacts", "./artifacts");
-            context.NugetDefaultPushSourceUrl = GetEnvOrArg(context, "nugetDefaultPushSourceUrl", "NUGET_DEFAULT_PUSH_SOURCE_URL");
+            context.NugetDefaultPushSourceUrl = GetEnvOrArg(context, "NUGET_DEFAULT_PUSH_SOURCE_URL", "nugetDefaultPushSourceUrl");
             context.NugetDefaultPushSourceApiKey = GetEnvOrArg(context, "NUGET_DEFAULT_PUSH_SOURCE_API_KEY", "nugetDefaultPushSourceApiKey");
 
             if (!context.HasArgument("solutionFilePath"))
@@ -55,8 +57,13 @@ namespace DefiantCode.Cake.Frosting
             if (context.SolutionFilePath != null)
             {
                 context.Information("Using solution: {0}", context.SolutionFilePath.FullPath);
+                context.Debug("Parsing solution...");
                 var slnResult = context.ParseSolution(context.SolutionFilePath);
-                context.Projects = slnResult.Projects.Where(x => !x.Path.FullPath.EndsWith("Solution Items")).Select(x => new Project(x.Path, context.ParseProject(x.Path, context.Configuration))).ToList().AsReadOnly();
+                context.Debug("Parsing projects...");
+                context.Projects = slnResult.Projects.Where(x => {
+                    context.Debug("Project: Name = {0}; Type = {1}; IsSolutionFolder = {2}", x.Name, x.Type, x.IsSolutionFolder());
+                    return !x.IsSolutionFolder();
+                    }).Select(x => new Project(x.Path, context.ParseProject(x.Path, context.Configuration))).ToList().AsReadOnly();
             }
             else
                 context.Projects = new Project[0];

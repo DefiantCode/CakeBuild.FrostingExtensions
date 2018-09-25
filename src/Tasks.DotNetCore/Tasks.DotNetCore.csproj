@@ -6,11 +6,11 @@
     <RootNamespace>DefiantCode.Cake.Frosting.Tasks</RootNamespace>
     <PackageId>DefiantCode.Cake.Frosting.DotNetCore</PackageId>
     <PackageProjectUrl>https://github.com/market6/MK6.Tools.CakeBuild.Frosting</PackageProjectUrl>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cake.Frosting" Version="0.2.30" />
+    <PackageReference Include="Cake.Frosting" Version="0.2.30.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -17,9 +17,6 @@ namespace DefiantCode.Cake.Frosting.Tasks
                 Source = context.NugetDefaultPushSourceUrl
             };
 
-            if (string.IsNullOrEmpty(nugetSettings.ApiKey))
-                throw new CakeException("NugetDefaultPushSourceApiKey was not set!");
-
             foreach (var package in context.GetFiles(context.Artifacts.FullPath + "/*.nupkg"))
             {
                 context.DotNetCoreNuGetPush(package.FullPath, nugetSettings);

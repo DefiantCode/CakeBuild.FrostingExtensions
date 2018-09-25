@@ -17,4 +17,14 @@ namespace Build
 
         }
     }
+
+    [TaskName("push")]
+    [Dependency(typeof(DotNetCoreNugetPush))]
+    public class PushTask : FrostingTask<DotNetCoreContext>
+    {
+        public override void Run(DotNetCoreContext context)
+        {
+
+        }
+    }
 }

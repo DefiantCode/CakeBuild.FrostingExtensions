@@ -6,11 +6,14 @@
     <RootNamespace>DefiantCode.Cake.Frosting.Core</RootNamespace>
     <PackageId>DefiantCode.Cake.Frosting.Core</PackageId>
     <PackageProjectUrl>https://github.com/DefiantCode/CakeBuild.FrostingExtensions</PackageProjectUrl>
-    <Version>0.0.3</Version>
+    <Version>0.0.0-local</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Josh Schlesinger</Authors>
+    <Company>Defiant Code Consulting, LLC</Company>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cake.Frosting" Version="0.2.30" />
+    <PackageReference Include="Cake.Frosting" Version="0.2.30.1" />
   </ItemGroup>
 
 </Project>
