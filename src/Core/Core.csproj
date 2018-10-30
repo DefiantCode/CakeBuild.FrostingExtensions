@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>DefiantCode.Cake.Frosting.Core</AssemblyName>
-    <RootNamespace>DefiantCode.Cake.Frosting.Core</RootNamespace>
+    <RootNamespace>DefiantCode.Cake.Frosting</RootNamespace>
     <PackageId>DefiantCode.Cake.Frosting.Core</PackageId>
     <PackageProjectUrl>https://github.com/DefiantCode/CakeBuild.FrostingExtensions</PackageProjectUrl>
     <Version>0.0.0-local</Version>

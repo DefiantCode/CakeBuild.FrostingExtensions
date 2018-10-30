@@ -30,7 +30,7 @@ namespace DefiantCode.Cake.Frosting
             context.Information("v{0}", GetType().Assembly.GetName().Version);
             _lifetimeActions?.BeforeSetup(context);
             if(!context.DisableGitVersion)
-                GitVersionTool.Install(context);
+                GitVersionTool.InstallGitVersion(context);
 
             context.Target = context.Argument("target", "Default");
             context.Configuration = context.Argument("configuration", "Release");
@@ -70,6 +70,11 @@ namespace DefiantCode.Cake.Frosting
 
             var buildSystem = context.BuildSystem();
             context.IsLocalBuild = buildSystem.IsLocalBuild;
+            if(buildSystem.IsRunningOnTeamCity)
+            {
+                //do specific TC stuff here
+                
+            }
 
             context.DirectoriesToClean = new DirectoryPath[] { context.Artifacts };
 
