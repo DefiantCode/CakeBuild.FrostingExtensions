@@ -15,6 +15,7 @@ namespace DefiantCode.Cake.Frosting.Tasks
             context.DotNetCoreClean(context.SolutionFilePath.FullPath, new DotNetCoreCleanSettings
             {
                 Configuration = context.Configuration,
+                Verbosity = context.GetVerbosity()
             });
 
             foreach (var dir in context.DirectoriesToClean)

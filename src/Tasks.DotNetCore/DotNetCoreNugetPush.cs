@@ -14,7 +14,8 @@ namespace DefiantCode.Cake.Frosting.Tasks
             var nugetSettings = new DotNetCoreNuGetPushSettings
             {
                 ApiKey = context.NugetDefaultPushSourceApiKey,
-                Source = context.NugetDefaultPushSourceUrl
+                Source = context.NugetDefaultPushSourceUrl,
+                Verbosity = context.GetVerbosity()
             };
 
             foreach (var package in context.GetFiles(context.Artifacts.FullPath + "/*.nupkg"))

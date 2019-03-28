@@ -30,7 +30,7 @@ namespace DefiantCode.Cake.Frosting
             context.Information("v{0}", GetType().Assembly.GetName().Version);
             _lifetimeActions?.BeforeSetup(context);
             if(!context.DisableGitVersion)
-                GitVersionTool.InstallGitVersion(context);
+                GitVersionTool.InstallGitVersion(context, version: context.GitVersionToolVersion);
 
             context.Target = context.Argument("target", "Default");
             context.Configuration = context.Argument("configuration", "Release");
@@ -57,11 +57,8 @@ namespace DefiantCode.Cake.Frosting
             if (context.SolutionFilePath != null)
             {
                 context.Information("Using solution: {0}", context.SolutionFilePath.FullPath);
-                context.Debug("Parsing solution...");
                 var slnResult = context.ParseSolution(context.SolutionFilePath);
-                context.Debug("Parsing projects...");
                 context.Projects = slnResult.Projects.Where(x => {
-                    context.Debug("Project: Name = {0}; Type = {1}; IsSolutionFolder = {2}", x.Name, x.Type, x.IsSolutionFolder());
                     return !x.IsSolutionFolder();
                     }).Select(x => new Project(x.Path, context.ParseProject(x.Path, context.Configuration))).ToList().AsReadOnly();
             }
@@ -79,8 +76,6 @@ namespace DefiantCode.Cake.Frosting
             context.DirectoriesToClean = new DirectoryPath[] { context.Artifacts };
 
             _lifetimeActions?.AfterSetup(context);
-
-            context.Verbose("\n\nDumping context...\n\n{0}", context.ToString());
         }
 
         public override void Teardown(DotNetCoreContext context, ITeardownContext info)

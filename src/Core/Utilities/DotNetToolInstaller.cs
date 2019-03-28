@@ -5,6 +5,7 @@ using System.Text;
 using Cake.Common.Tools.DotNetCore;
 using Cake.Common.Tools.DotNetCore.Tool;
 using Cake.Core.IO;
+using Cake.Common.Diagnostics;
 
 namespace DefiantCode.Cake.Frosting.Utilities
 {
@@ -13,26 +14,15 @@ namespace DefiantCode.Cake.Frosting.Utilities
         public static void InstallDotNetTool(this DotNetCoreContext context, string package, string version = null)
         {
             var args = new ProcessArgumentBuilder();
+            args.Append("tool");
+            args.Append("install");
             args.Append("-g");
             args.Append(package);
-            if (!string.IsNullOrEmpty(version))
+            if(version != null)
                 args.AppendSwitch("--version", version);
-
-            //for some reason this alias wants a path to a csproj but it's never used, only the directory the file is in
-            //so we create a filepath to the working directory and a non-existant csproj file
-            var projectPath = context.Environment.WorkingDirectory + "dummy.csproj";
-            context.DotNetCoreTool(projectPath, "tool install", args);  
+            var p = context.ProcessRunner.Start("dotnet", new ProcessSettings { Arguments = args, RedirectStandardError = true });
+            p.WaitForExit();
+            context.Information(string.Join("\n", p.GetStandardError()));
         }
-
-        //public static void InstallDotNetTool(string workingDirectory, string package, string version = null)
-        //{
-        //    var args = new ProcessArgumentBuilder();
-        //    args.Append("-g");
-        //    args.Append(package);
-        //    if (!string.IsNullOrEmpty(version))
-        //        args.AppendSwitch("--version", version);
-
-        //    var toolRunner = new DotNetCoreToolRunner()
-        //}
     }
 }

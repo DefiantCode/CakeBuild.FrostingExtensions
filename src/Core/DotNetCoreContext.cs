@@ -20,11 +20,13 @@ namespace DefiantCode.Cake.Frosting
         public string NugetDefaultPushSourceUrl { get; set; }
         public string NugetDefaultPushSourceApiKey { get; set; }
         public bool DisableGitVersion { get; set; }
+        public string GitVersionToolVersion { get; set; }
         public TaskOutputs Outputs { get; set; }
 
         public DotNetCoreContext(ICakeContext context) : base(context)
         {
             Outputs = new TaskOutputs();
+            GitVersionToolVersion = "3.6.2";
         }
 
         public ValidateResult Validate(ValidateOptions options = null, bool throwException = true)

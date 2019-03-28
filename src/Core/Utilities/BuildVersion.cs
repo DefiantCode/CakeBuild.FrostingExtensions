@@ -48,7 +48,7 @@ namespace DefiantCode.Cake.Frosting.Utilities
                     throw new CakeException("Could not calculate version of build.");
                 }
 
-                context.Verbose("\n\nDumping GitVersion info...\n\n{0}\n\n", assertedversions.Dump());
+                context.Information("Calculated semver: {0}", assertedversions.FullSemVer);
 
                 return new BuildVersion(assertedversions); 
             }

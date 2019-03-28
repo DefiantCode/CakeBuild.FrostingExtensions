@@ -26,7 +26,7 @@ namespace DefiantCode.Cake.Frosting.Tasks
                     OutputDirectory = project.PublishedOutputDirectory
                 };
                 var runtimeIdentifiers = project.ProjectParserResult.NetCore.RuntimeIdentifiers;
-                if (runtimeIdentifiers.Any())
+                if (runtimeIdentifiers != null && runtimeIdentifiers.Any())
                 {
                     foreach (var runtime in runtimeIdentifiers)
                     {

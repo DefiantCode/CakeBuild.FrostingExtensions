@@ -24,7 +24,8 @@ namespace DefiantCode.Cake.Frosting.Tasks
                     OutputDirectory = context.Artifacts,
                     IncludeSource = true,
                     IncludeSymbols = true,
-                    ArgumentCustomization = args => args.Append("/p:Version={0}", context.BuildVersion.Version.NuGetVersionV2)
+                    ArgumentCustomization = args => args.Append("/p:Version={0}", context.BuildVersion.Version.NuGetVersionV2),
+                    Verbosity = context.GetVerbosity()
                 });
             }
 

@@ -36,7 +36,7 @@ Param(
 )
 
 $TargetFramework = "netcoreapp2.1"
-$DotNetVersion = "latest";
+$DotNetVersion = "2.1.400";
 $DotNetInstallerUri = "https://dot.net/v1/dotnet-install.ps1";
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 

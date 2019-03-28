@@ -15,8 +15,10 @@ namespace DefiantCode.Cake.Frosting.Tasks
             context.DotNetCoreBuild(context.SolutionFilePath.FullPath, new DotNetCoreBuildSettings
             {
                 Configuration = context.Configuration,
-                ArgumentCustomization = args => args.Append("/p:Version={0}", context.BuildVersion.Version.FullSemVer)
+                ArgumentCustomization = args => args.Append("/p:Version={0}", context.BuildVersion.Version.FullSemVer),
+                Verbosity = context.GetVerbosity()               
             });
         }
+
     } 
 }
